@@ -15,8 +15,8 @@ const AppWrapper = (Page: NextPage, title: string) : NextPage => {
             <div>
                 <SideBar />
             </div>
-            <div>
-                <h1>{title}</h1>
+            <div className={styles.page}>
+                <h1 className={styles.headertitle}>{title}</h1>
                 <Page />
             </div>
         </div>

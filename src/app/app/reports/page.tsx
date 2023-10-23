@@ -1,9 +1,3 @@
-import React from 'react'
-
-function Reports() {
-  return (
-    <div>Reports</div>
-  )
-}
-
-export default Reports
+import Reports from "@/components/templates/reports/Reports";
+import AppWrapper from "@/components/templates/wrappers/AppWrapper";
+export default AppWrapper(Reports, 'Reports')

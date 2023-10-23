@@ -8,26 +8,26 @@ export const items : SideBarItemInterface[] = [
     {
         title: 'Dashboard',
         icon: '📊',
-        link: ''
+        link: '/app/dashboard'
        },
   {
     title: 'Reports',
     icon: '📄',
-    link: ''
+    link: '/app/reports'
    },
    {
     title: 'Messages',
     icon: '💬',
-    link: '',
+    link: '/app/messages',
    },
    {
     title: 'Website',
     icon: '🌐',
-    link: '',
+    link: '/app/website',
    },
    {
     title: 'Donations',
     icon: '💰',
-    link: '',
+    link: '/app/donations',
    },
 ]

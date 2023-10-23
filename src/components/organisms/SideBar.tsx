@@ -1,16 +1,20 @@
 "use client"
-import React, { useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./SideBar.module.scss";
 import { SideBarItemInterface, items } from "@/constants/sidebaritems";
-import { sideBarItemActive } from "@/services/utils";
+import { domainName } from "@/services/utils";
 
 function SideBarItem({title, icon, link}: SideBarItemInterface) {
     const router = useRouter();
-    const active = sideBarItemActive(link)
+    const [active, setActive] = useState(false)
     
-    function action() {
+    useEffect(()=> {
+        setActive(!!(window.location.href === `${domainName + link}`))
+    },[])
 
+    function action() {
+      router.push(link)
   }
 
   return (

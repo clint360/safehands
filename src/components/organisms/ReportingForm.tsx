@@ -29,7 +29,7 @@ function ReportingForm() {
   };
 
   // Submit handler
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = (values: any, { setSubmitting } : any) => {
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
       setSubmitting(false);
