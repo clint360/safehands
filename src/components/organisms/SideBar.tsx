@@ -15,6 +15,9 @@ function SideBarItem({title, icon, link}: SideBarItemInterface) {
 
   return (
     <div className={`${styles.sidebaritem} ${active && styles.sidebaritemactive}`} onClick={action}>
+      {
+        <div className={styles.notificationdot} />
+      }
       <div className={styles.sidebaritemicon}>{icon}</div>
       <div className={styles.sidebaritemtitle}>{title}</div>
     </div>

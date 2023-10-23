@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    border-right: 1px solid #6969691d;
 }
 
 .sidebaritem {
@@ -13,6 +14,7 @@
     border-radius: 10px;
     transition: all 0.09s ease-in;
     user-select: none;
+    position: relative;
     
     //for the inside
     display: flex;
@@ -49,4 +51,14 @@
     background: #4848d229;
     cursor: pointer;
     color: #3838ff;
+}
+
+.notificationdot {
+    width: 7px;
+    height: 7px;
+    background: rgba(255, 0, 0, 0.592);
+    position: absolute;
+    border-radius: 50%;
+    bottom: 13%;
+    right: 4%;
 }

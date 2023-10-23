@@ -5,11 +5,11 @@ export interface SideBarItemInterface {
 }
 
 export const items : SideBarItemInterface[] = [
-  {
-   title: 'Home',
-   icon: '🏠',
-   link: ''
-  },
+    {
+        title: 'Dashboard',
+        icon: '📊',
+        link: ''
+       },
   {
     title: 'Reports',
     icon: '📄',
@@ -18,6 +18,16 @@ export const items : SideBarItemInterface[] = [
    {
     title: 'Messages',
     icon: '💬',
+    link: '',
+   },
+   {
+    title: 'Website',
+    icon: '🌐',
+    link: '',
+   },
+   {
+    title: 'Donations',
+    icon: '💰',
     link: '',
    },
 ]
