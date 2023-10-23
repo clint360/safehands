@@ -1,0 +1,89 @@
+.authPage {
+  background: rgba(49, 49, 164, 0.871);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.authBox {
+  background: white;
+  width: 25rem;
+  min-height: 27.5rem;
+  padding-bottom: 30px;
+  border-radius: 20px;
+  font-family: Product Sans;
+}
+
+.formArea {
+  padding: 0 25px;
+  font-size: 0.8rem;
+  font-family: Product sans;
+}
+
+.formRow {
+  height: auto;
+  margin-bottom: 5px;
+  transition: all .2s ease-in;
+}
+
+.inputDiv {
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.448);
+  height: 2.2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  input {
+    width: 90%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: grey;
+    font-family: Product sans;
+    font-size: 1rem;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
+      0 0 0 3px #c8dafc;
+  }
+}
+
+.formInputField {
+  background: white;
+}
+
+.twoFields {
+  display: flex;
+  padding-bottom: 10px;
+  justify-content: space-between;
+  .oneOfTwo {
+    width: 48%;
+  }
+}
+
+.otherAuthHeader {
+  padding: 10px 0;
+  color: rgba(169, 169, 169, 0.685);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.errorMessage {
+   color: rgb(255, 40, 40); // Set the color to red
+   font-size: 0.8rem; // Adjust the font size
+   margin-top: 0.2rem; // Add some top margin
+ }
+ 
