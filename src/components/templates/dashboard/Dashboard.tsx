@@ -12,7 +12,6 @@ import {
 } from "recharts";
 import "./Dashboard.scss";
 import Text from "@/components/atoms/Text";
-import { getGradientByIndex } from "@/services/utils";
 
 const Grid = styled.div`
   display: flex;

@@ -27,6 +27,8 @@
             transition: transform 0.1s ease-in;
     
             &:hover {
+                -webkit-animation:  ring 7s .5s ease-in-out infinite;
+                -moz-animation: ring 7s .5s ease-in-out infinite;
               animation: ring 7s .5s ease-in-out infinite;
               color: blue;
             }
@@ -50,6 +52,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     
     img {
      height: 2rem;
