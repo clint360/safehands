@@ -12,6 +12,7 @@ import {
 } from "recharts";
 import "./Dashboard.scss";
 import Text from "@/components/atoms/Text";
+import CountUp from "react-countup";
 
 const Grid = styled.div`
   display: flex;
@@ -64,15 +65,15 @@ const Dashboard: React.FC = () => {
               Total Reports
             </Text>
             <Text color="white" size="large" weight="bold">
-              {reportsReceived}
+              <CountUp end={reportsReceived} />
             </Text>
           </StatCard>
-          <StatCard index={2} >
+          <StatCard index={2}>
             <Text color="white" weight="bold">
               Reports Pending
             </Text>
             <Text color="white" size="large" weight="bold">
-              {reportsPending}
+              <CountUp end={reportsPending} />
             </Text>
           </StatCard>
           <StatCard index={3}>
@@ -80,7 +81,7 @@ const Dashboard: React.FC = () => {
               Reviewed
             </Text>
             <Text color="white" size="large" weight="bold">
-              {reportsReviewed}
+              <CountUp end={reportsReviewed} />
             </Text>
           </StatCard>
           <StatCard index={4}>
@@ -88,7 +89,7 @@ const Dashboard: React.FC = () => {
               Reporters
             </Text>
             <Text color="white" size="large" weight="bold">
-              {reporters}
+              <CountUp end={reporters} />
             </Text>
           </StatCard>
         </Grid>
