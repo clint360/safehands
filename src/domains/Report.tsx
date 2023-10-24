@@ -1,0 +1,1 @@
+export type ReportStatus  = 'RECIEVED' | 'REVIEWED' | 'REJECTED' | 'DONE'

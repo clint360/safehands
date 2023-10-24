@@ -4,30 +4,30 @@ export interface SideBarItemInterface {
   link: string;
 }
 
-export const items : SideBarItemInterface[] = [
-    {
-        title: 'Dashboard',
-        icon: '📊',
-        link: '/app/dashboard'
-       },
+export const items: SideBarItemInterface[] = [
   {
-    title: 'Reports',
-    icon: '📄',
-    link: '/app/reports'
-   },
-   {
-    title: 'Messages',
-    icon: '💬',
-    link: '/app/messages',
-   },
-   {
-    title: 'Website',
-    icon: '🌐',
-    link: '/app/website',
-   },
-   {
-    title: 'Donations',
-    icon: '💰',
-    link: '/app/donations',
-   },
-]
+    title: "Dashboard",
+    icon: "dashboard",
+    link: "/app/dashboard",
+  },
+  {
+    title: "Reports",
+    icon: "description",
+    link: "/app/reports",
+  },
+  {
+    title: "Messages",
+    icon: "mail",
+    link: "/app/messages",
+  },
+  {
+    title: "Website",
+    icon: "domain_add",
+    link: "/app/website",
+  },
+  {
+    title: "Donations",
+    icon: "volunteer_activism",
+    link: "/app/donations",
+  },
+];

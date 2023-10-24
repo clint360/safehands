@@ -22,7 +22,9 @@ function SideBarItem({title, icon, link}: SideBarItemInterface) {
       {
         <div className={styles.notificationdot} />
       }
-      <div className={styles.sidebaritemicon}>{icon}</div>
+      <div className={styles.sidebaritemicon}><i className="material-icons-outlined">
+          {icon}
+        </i></div>
       <div className={styles.sidebaritemtitle}>{title}</div>
     </div>
   );
