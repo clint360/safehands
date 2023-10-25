@@ -82,14 +82,14 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
-  
+  height: auto;
 }
 
 body {
   color: black;
   background: white;
   font-family: Lato;
+  overflow-y: hidden;
 }
 
 a {
@@ -106,8 +106,21 @@ a {
   align-items: center;
 }
 
+.logo .text {
+  user-select: none;
+  font-weight: 800;
+  font-size: 3rem;
+}
+
  .logo img {
     height: 90%;
     width: 100%
   }
+
+  @media (max-width: 768px) {
+    .logo .text{
+       font-size: 2.3rem;
+    }
+  }
+
  

@@ -38,9 +38,14 @@ function NavBar() {
           </div>
         </Link>
         <div className={styles.downarrow}>
-          <i className="material-icons-outlined">keyboard_arrow_down</i>
-          <select name="slct" id="slct">
-                <option value="1">Log Out</option>
+          <select name="slct" id="slct" defaultValue={''}>
+              <option style={{display: "none"}}></option>
+               <option value="1" className={styles.selectopt}>
+                    Website 🏠
+                </option>
+                <option value="1" className={styles.selectopt}>
+                    Log Out 📴
+                </option>
             </select>
         </div>
       </div>

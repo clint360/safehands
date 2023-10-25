@@ -107,6 +107,17 @@ const Dashboard: React.FC = () => {
           <Bar dataKey="reports" fill="#8884d8" />
         </BarChart>
       </div>
+      <div className="chartContainer">
+        <h2>Reports by Category</h2>
+        <BarChart width={400} height={300} data={barChartData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="category" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="reports" fill="#8884d8" />
+        </BarChart>
+      </div>
     </div>
   );
 };

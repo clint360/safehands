@@ -1,3 +1,7 @@
+.mainApp {
+    position: relative;
+}
+
 .bodySection {
     display: flex;
 }
@@ -7,5 +11,7 @@
 }
 
 .page {
+    margin-top: 4rem;
     padding: 10px;
+    overflow-y: scroll;
 }

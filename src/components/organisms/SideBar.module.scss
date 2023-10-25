@@ -7,6 +7,17 @@
     gap: 5px;
     flex-direction: column;
     border-right: 1px solid #6969691d;
+    @media (max-width: 768px) {
+        background: white;
+        position: fixed;
+        bottom: 0;
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-top: 1px solid #6969691d;
+        z-index: 9999;
+      }
 }
 
 .sidebaritem {
@@ -28,6 +39,13 @@
         background: #4848d234;
         cursor: pointer;
         color: #3838ff;
+
+        @media (max-width: 768px) {
+            &:hover {
+            background: none;
+            color:#696969 ;
+        }
+          }
     }
 }
 
@@ -48,12 +66,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 768px) {
+        font-size: 10px;
+      }
 }
 
 .sidebaritemactive {
     background: #4848d229;
     cursor: pointer;
     color: #3838ff;
+
+    @media (max-width: 768px) {
+    background: #4848d229;
+    cursor: pointer;
+    color: #3838ff;
+}
 }
 
 .notificationdot {
@@ -64,4 +92,12 @@
     border-radius: 50%;
     bottom: 13%;
     right: 4%;
+    @media (max-width: 768px) {
+        width: 5px;
+        height: 5px;
+        bottom: 16%;
+      }
+    @media (max-width: 300px) {
+        display: none;
+        }
 }

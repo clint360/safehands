@@ -6,7 +6,13 @@
     display: flex;
     justify-content: space-between;
     align-content: center;
+    position: fixed;
+    background: white;
+    width: 100%;
     user-select: none;
+    @media (max-width: 768px) {
+        height: 3rem;
+   }
 }
 
 .detailssection {
@@ -25,7 +31,11 @@
         i {
             font-size: 2.5rem;
             transition: transform 0.1s ease-in;
-    
+             
+            @media (max-width: 768px) {
+                   font-size: 2rem;
+              }
+
             &:hover {
                 -webkit-animation:  ring 7s .5s ease-in-out infinite;
                 -moz-animation: ring 7s .5s ease-in-out infinite;
@@ -43,6 +53,13 @@
     border-radius: 50%;
     top: 20%;
     right: 10%;
+
+    @media (max-width: 768px) {
+        width: 10px;
+        height: 10px;
+        top: 24%;
+        right: 12%;
+   }
 }
 
 .accountcircle {
@@ -67,14 +84,45 @@
     justify-content: center;
     align-items: center;
 
-    i {
-        font-size: 2.5rem;
-        transition: transform 0.1s ease-in;
+   select { 
+    appearance: none;
+    outline: none;
+    border: none;
+    padding: 10px;
+    width: 1rem;
+    margin: -3px 15px 0px 10px;
+    cursor: pointer;
+    background-image: url('./../../assets/images/down.png'); /* Replace with your own down arrow image path */
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 20px;
+    transition: transform 0.2s ease-in;
+
+    option {
+        font-size: 18px;
+        font-family: Lato;
+        padding: 20px 20px;
+        border-radius: 0;
+        background-color: none;
+        cursor: pointer;
 
         &:hover {
-          transform: translateY(5px);
+            background-color: lightblue;
         }
-    }   
+
+        &:checked {
+            background-color: lightblue;
+        }
+    }
+
+    &:hover {
+        transform: translateY(3px);
+    }
+} /* Adjust the size as needed */
+}
+
+.selectopt {
+    height: 200px;
 }
 
 @-webkit-keyframes ring {
