@@ -8,6 +8,7 @@
     align-content: center;
     position: fixed;
     background: white;
+    z-index: 81;
     width: 100%;
     user-select: none;
     @media (max-width: 768px) {
