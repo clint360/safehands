@@ -1,13 +1,12 @@
 .navbarmain {
     height: 4rem;
-    background: rgba(255, 255, 255, 0);
+    background: white;
     border-bottom: 1px solid #6969691d;
     color: #696969;
     display: flex;
     justify-content: space-between;
     align-content: center;
     position: fixed;
-    background: white;
     z-index: 81;
     width: 100%;
     user-select: none;
@@ -96,6 +95,7 @@
     background-image: url('./../../assets/images/down.png'); /* Replace with your own down arrow image path */
     background-repeat: no-repeat;
     background-position: right center;
+    background-color: white;
     background-size: 20px;
     transition: transform 0.2s ease-in;
 
