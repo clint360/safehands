@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./AuthButton.module.scss";
-import Loader from "@/core/components/atoms/loader/Loader";
+import Loader from "@/components/atoms/Loader";
 
 interface AuthButtonProps {
   name: string;

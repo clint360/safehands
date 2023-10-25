@@ -21,7 +21,7 @@ interface FormValues {
   confirmPassword: string;
 }
 
-function Auth({ action }: AuthPageProps) {
+function Auth({ action }: AuthPageProps){
   // Define the validation schema using Yup
   const validationSchema = Yup.object().shape({
     firstName:
