@@ -24,10 +24,5 @@ export const items: SideBarItemInterface[] = [
     title: "Website",
     icon: "domain_add",
     link: "/app/website",
-  },
-  {
-    title: "Donations",
-    icon: "volunteer_activism",
-    link: "/app/donations",
-  },
+  }
 ];

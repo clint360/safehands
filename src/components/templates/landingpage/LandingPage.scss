@@ -1,5 +1,11 @@
 .landing-page {
   font-family: Lato;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;
+}
+
+.landing-page::-webkit-scrollbar {
+  display: none;
 }
 
 .nav {
@@ -9,21 +15,22 @@
   top: 0;
   left: 0;
   height: 4rem;
-  width: 100%;
+  width: 100vw;
   background-color: #0a0a0a60;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 100;
+  transition: top 0.2s ease-in;
 }
 
 .navbar {
   display: flex;
   justify-content: flex-end;
-  margin: 0;
   padding: 20px;
   list-style-type: none;
   height: 100%;
   align-items: center;
-}
+  margin-left: -1000px;
+} 
 
 .navbar li {
   margin-left: 20px;
@@ -33,6 +40,7 @@
   color: white;
   text-decoration: none;
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .navbar li a:hover {
@@ -84,16 +92,158 @@
 }
 
 #home .content h1 {
-  font-size: 4rem;
-  color: red;
+  font-size: 3.5rem;
+  color: rgb(255, 22, 22);
 }
 
 
 #about {
+   min-height: 100vh;
+   background: url('../../../assets/images/safehands.jpg');
+   background-size: cover;
+   background-blend-mode: calc(20);
 
+.texthouse {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.532);
+  color: white;
+   .text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    min-width: 300px;
+    font-size: 1.3rem;
+   }
+  }
 }
 
 #about .content .image-wrapper img {
   width: 100%;
   height: 100%;
+}
+
+#report {
+  min-height: 100vh;
+  
+ border-bottom: 1px solid #dfdfdf;
+.texthouse {
+ height: 50vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+  .text {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   gap: 1rem;
+   max-width: 600px;
+   min-width: 300px;
+   font-size: 1.5rem;
+  }
+ }
+}
+
+
+
+.buttons {
+  margin-top: 20px;
+
+  button {
+    margin: 0 10px;
+
+    @media screen and (max-width: 736px){
+      margin: 10px 0;
+    }
+  }
+  
+}
+
+
+/* CSS */
+.button-24 {
+  background: #FF4742;
+  border: 1px solid #FF4742;
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 15px 30px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  transition: all 0.2s ease-in;
+}
+
+.button-24:hover,
+.button-24:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #FF4742;
+  border: 1px solid #FF4742;
+}
+
+.button-24:active {
+  opacity: .5;
+}
+
+.button-23 {
+  background: #3dc050;
+  border: 1px solid #3d8023;
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 15px 30px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  transition: all 0.2s ease-in;
+  
+}
+
+.button-23:hover,
+.button-23:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #FF4742;
+  border: 1px solid #FF4742;
+}
+
+.button-23:active {
+  opacity: .5;
+}
+
+#contact {
+  height: 20vh;
 }

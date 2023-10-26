@@ -1,7 +1,41 @@
+.formContainer {
+   padding: 10px 100px;
+   padding-bottom: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   @media screen and (max-width: 736px) {
+      padding: 10px 30px;
+   }
+
+   .formBox {
+     width: 60%;
+     max-width: 600px;
+     min-width: 400px;
+
+     @media screen and (max-width: 736px) {
+      padding: 10px 30px;
+      width: 80%;
+      margin-left: 10px;
+   }
+   }
+}
+
+
+.reportingform {
+  width: 100%;
+}
+
 .formRow {
     height: auto;
     margin-bottom: 5px;
     transition: all .2s ease-in;
+   textarea {
+    
+    width: 100%;
+    padding: 5px 10px;
+   }
   }
   
   .inputDiv {
@@ -62,4 +96,10 @@
      font-size: 0.8rem; // Adjust the font size
      margin-top: 0.2rem; // Add some top margin
    }
-   
+ 
+   .buttonRow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+   }

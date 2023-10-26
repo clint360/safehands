@@ -53,10 +53,20 @@
         }
         .peepMessage {
             color: #696969;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
 
             .timeago {
                 font-style: italic;
+            }
+        }
+    }
+
+    
+    @media screen and (max-width: 736px) {
+        zoom: 130%;
+        .middle {
+            .peepMessage {
+                font-size: 0.7rem;
             }
         }
     }

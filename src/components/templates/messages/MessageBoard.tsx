@@ -9,7 +9,8 @@ interface MessageInterface {
   senderId: string | number;
   receiverId: string | number;
   content: string;
-  timestamp: Record<string, string>; // or Date
+  body: string;
+  timestamp: Record<string, string | number>; // or Date
 }
 
 function MessageBoard() {
