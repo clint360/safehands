@@ -200,9 +200,9 @@ function Auth({ action }: AuthPageProps) {
             )}
           </Formik>
           <div className={styles.otherAuthHeader}>
-            <div>——————————————</div>
+            <div>————————————</div>
             <div>Or</div>
-            <div>———————————————</div>
+            <div>—————————————</div>
           </div>
           <OtherAuth />
         </div>

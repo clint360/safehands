@@ -63,7 +63,12 @@
 
     
     @media screen and (max-width: 736px) {
-        zoom: 130%;
+        padding: 7px 10px;
+        margin: 5px 0;
+        height: auto;
+        border-radius: 10px;
+        background: rgb(244, 244, 244);
+        zoom: 120%;
         .middle {
             .peepMessage {
                 font-size: 0.7rem;
