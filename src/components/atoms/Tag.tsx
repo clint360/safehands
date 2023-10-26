@@ -12,8 +12,10 @@ import React, { ReactNode } from 'react'
 function ReportTag({children, status}: ReportTagProps) {
   const tagStyle = {
     height: "auto",
-    background: "green",
-    padding: "5px 5px",
+    background: "black",
+    fontSize: "0.8rem",
+    fontWeight: "bold",
+    padding: "3px 10px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

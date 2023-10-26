@@ -1,0 +1,230 @@
+.chatArea {
+    background: white;
+    height: 80vh;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+   }
+  
+  .chatAreaHeader {
+    display: flex;
+    justify-content: space-between;
+    height: 3rem;
+    align-items: center;
+    padding: 1.7rem;
+    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+    cursor: pointer;
+  }
+  
+  .usersname{
+    color: black;
+  }
+  
+  .userDetails {
+    display: flex;
+  }
+  
+  .userDetails .ending .dot img {
+    border-radius: 50%;
+  }
+  
+  .userDetails .ending {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .userDetails .middle {
+    flex-basis: 78%;
+    padding-left: 10px;
+  }
+  
+  .userDetails .circle img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: skyblue;
+  }
+  
+  .peepMessage {
+    font-size: 13px;
+  }
+  
+  .chatlist {
+    margin-top: 15px;
+    overflow-y: scroll;
+    height: 80vh;
+    border-bottom: 1px solid rgb(234, 234, 234);
+  }
+  
+  .chatAreaHeader .icons,
+  .chatInputSection .fourIcons {
+    display: flex;
+    gap: 5px;
+    justify-content: space-evenly;
+  }
+  
+  .chatAreaHeader .icons .icon svg,
+  .chatInputSection .fourIcons .icon svg {
+    color: rgb(42, 117, 223);
+  }
+  
+  .icons svg {
+    width: 40px;
+  }
+  
+  .chatAreaHeader .icons .icon,
+  .chatInputSection .fourIcons .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .chatInputSection {
+    height: 60px;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+  }
+  
+  .fourIcons {
+    flex-basis: 10%;
+  }
+  
+  .longinput {
+    padding: 10px;
+    flex-basis: 80%;
+    min-height: 35px;
+    height: auto;
+    max-height: 8rem;
+    overflow-y: auto;
+    background: rgb(233, 233, 233);
+    margin: auto 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+  }
+  
+  .longinput .textarea {
+    background: none;
+    outline: none;
+    padding-left: 10px;
+    border: none;
+    width: 40vw;
+    font-family: Lato;
+    color: black;
+  }
+  .test{
+      color:black;
+  }
+  .chatBody{
+      flex: 1;
+      overflow:scroll;
+  }
+  
+  ::-webkit-scrollbar{
+      display: none;
+  }
+
+
+  .submirOrLike i{
+     font-size: 2.6rem;
+     color: rgb(84, 84, 255);
+     cursor: pointer;
+  } 
+
+  .myrow {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .thierrow {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .mymessagebody {
+    position: relative;
+    right: 15px;
+    text-align: left;
+    max-width: 65%;
+    color: whiteZZ;
+    padding: 10px;
+    background: #51bfdd;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    justify-content: flex-end;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -12px;
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(135deg, #51bfdd 0%, #51bfdd 50%, transparent 50%, transparent);
+    }
+  }
+
+  .thiermessagebody {
+    position: relative;
+    left: 15px;
+    text-align: left;
+    max-width: 65%;
+    padding: 10px;
+    background: #d3d3d3;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    justify-content: flex-start;
+    text-align: left;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -13px;
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(225deg, #d3d3d3 0%, #d3d3d3 50%, transparent 50%, transparent);
+    }
+  }
+
+  .downerpart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+
+    .time {
+        font-size: 0.7rem;
+        color: #595959;
+    }
+  }
+
+  .dayRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+
+    .day {
+        padding: 3px 10px;
+        text-align: center;
+        min-width: 100px;
+        width: auto;
+        color: white;
+        font-weight: 500 ;
+        background: black;
+        border-radius: 10px;
+        font-size: 0.8rem;
+    }
+  }
+
+  
+

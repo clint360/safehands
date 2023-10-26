@@ -1,0 +1,234 @@
+.messageswindow {
+    display: flex;
+ 
+    .contactsDiv {
+       flex-basis: 40%;
+       border-right: 1px solid #e5e5e5;
+       height: calc(100vh - 180px);
+    }
+
+    .messageboardDiv {
+       flex-basis: 60%;
+    }
+
+    @media screen and (max-width: 736px) {
+        .contactsDiv {
+            border: none;
+            flex-basis: 100%;
+        }
+        .messageboardDiv {
+            display: none;
+        }
+    }
+}
+
+
+
+.chatListItem {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-top: 1px solid #e5e5e5;
+    padding: 1.7rem 0;
+    padding-left: 5px;
+    cursor: pointer;
+
+    .circleProfile {
+         height: 2.5rem;
+         width: 2.5rem;
+         margin-right: 10px;
+
+        img {
+         border-radius: 50%;
+         height: 2.5rem;
+         width: 2.5rem;
+        }
+    }
+
+    .middle {
+        width: 85%;
+        .username {
+          font-weight: 600;
+        }
+        .peepMessage {
+            color: #696969;
+            font-size: 0.7rem;
+
+            .timeago {
+                font-style: italic;
+            }
+        }
+    }
+}
+
+.messagesboard {
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+        height: 96vh;
+      }
+      
+      .ask-area {
+        padding: 10px 20px;
+      }
+      
+      .wrapper form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      
+      .app-logo {
+        display: block;
+        margin: 10px auto 20px auto;
+        max-width: 60px;
+      }
+      
+      .wrapper form img {
+        max-width: 50px;
+      }
+      
+      .wrapper form input {
+        background-color: #000;
+        color: #61DAFB;
+        border: 1px solid #005167;
+        font-size: 22px;
+        padding: 10px 15px;
+        flex: 1;
+        border-radius: 25px;
+        outline: none;
+      }
+      
+      .wrapper form button {
+        border: 1px solid #000;
+        font-size: 22px;
+        padding: 10px 20px;
+        background-color: #51bfdd;
+        color: #000;
+        cursor: pointer;
+        border-radius: 25px;
+      }
+      
+      .wrapper form button:hover {
+        opacity: 0.8;
+      }
+      
+      .response-area {
+        font-size: 20px;
+        max-width: 1100px;
+        display: block;
+        margin: 50px auto 0 auto;
+      }
+      
+      .footer {
+        font-size: 14px;
+        letter-spacing: 4px;
+        margin: 50px 0 40px 0;
+        opacity: 0.5;
+      }
+      
+      .cg-logo.loading {
+        animation: rotation 2s infinite linear;
+      }
+      
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(359deg);
+        }
+      }
+      
+      .message {
+        position: relative;
+        display: flex;
+        width: 100%;
+        color: black;
+        padding: 0;
+      }
+      
+      .message p {
+        position: inherit;
+        right: 0;
+        text-align: right;
+        max-width: 65%;
+        padding: 12px;
+        background: #51bfdd;
+        border-radius: 10px;
+        font-size: 0.55em;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      
+      .message p::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -12px;
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(135deg, #51bfdd 0%, #51bfdd 50%, transparent 50%, transparent);
+      }
+      
+      .message p span {
+        display: block;
+        margin-top: 5px;
+        font-size: 0.7em;
+        opacity: 0.5;
+      }
+      
+      .my_message {
+        justify-content: flex-end;
+        margin-right: 40px;
+      }
+      
+      .ai_message {
+         justify-content: flex-start;
+      }
+      
+      .ai_message p{
+        background: rgb(168, 168, 168);
+        text-align: left;
+      }
+      
+      .ai_message p span {
+        text-align: end;
+        font-size: 0.7em;
+      }
+      
+      .ai_message p::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -10px;
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(225deg, rgb(168, 168, 168) 0%, rgb(168, 168, 168) 50%, transparent 50%, transparent);
+      }
+      
+      .texts {
+        padding: 20px;
+      }
+      
+      
+      @media screen and (max-width: 670px) {
+        body {
+          zoom: 90%;
+        }
+      
+        .texts {
+          padding: 15px;
+          overflow-y: scroll;
+          height: 90%;
+          background: red;
+        }
+      
+        .ask-area {
+         margin-bottom: -80px;
+        }
+      }
+}
