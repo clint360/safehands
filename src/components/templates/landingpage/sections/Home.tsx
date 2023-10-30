@@ -1,5 +1,6 @@
 import React from 'react'
 import { scrollTo } from '../LandingPage'
+import Link from 'next/link'
 
 function Home() {
   return (
@@ -14,7 +15,7 @@ function Home() {
       </p>
       <div className="buttons">
         <button className="button-24" onClick={()=>{scrollTo('report')}}>REPORT ABUSE CASE</button>
-        <button className="button-23" onClick={()=>{}}>VIEW REPORT STATUS</button>
+        <Link href={'/auth/signup'}><button className="button-23">VIEW REPORT STATUS</button></Link>
       </div>
     </div>  
       <hr />

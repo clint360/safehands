@@ -1,13 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import AuthHeader from "./components/AuthHeader";
 import styles from "./styles/Auth.module.scss";
 import AuthButton from "./components/AuthButton";
 import OtherAuth from "./components/OtherAuth";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { signIn, signUp } from "./utils";
+import Link from "next/link";
 
 interface AuthPageProps {
   action: "LOGIN" | "SIGNUP";
@@ -22,6 +24,9 @@ interface FormValues {
 }
 
 function Auth({ action }: AuthPageProps) {
+  const [logInError, setLogInError] = useState<string | null>(null);
+  const [signUpError, setSignUpError] = useState<string | null>(null);
+  const [signUpSuccessful, setSignUpSuccessful] = useState<boolean>(false);
   // Define the validation schema using Yup
   const validationSchema = Yup.object().shape({
     firstName:
@@ -35,7 +40,9 @@ function Auth({ action }: AuthPageProps) {
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
-    password: Yup.string().required("Password is required"),
+    password: Yup.string()
+      .min(8, "Minimum of 8 characters required")
+      .required("Password is required"),
     confirmPassword:
       action === "SIGNUP"
         ? Yup.string()
@@ -44,7 +51,7 @@ function Auth({ action }: AuthPageProps) {
         : Yup.string(),
   });
 
-  const router = useRouter()
+  const router = useRouter();
 
   // Define the initial form values
   const initialValues: FormValues = {
@@ -56,7 +63,7 @@ function Auth({ action }: AuthPageProps) {
   };
 
   // Handle form submission
-  const handleSubmit = (
+  const handleSubmit = async (
     values: FormValues,
     { setSubmitting }: FormikHelpers<FormValues>
   ) => {
@@ -77,12 +84,18 @@ function Auth({ action }: AuthPageProps) {
     // Example of how to handle different actions separately
     if (action === "SIGNUP") {
       // Handle Sign Up logic
-        setSubmitting(true) 
-      
-      console.log("Signing up with form values:", formValues);
+      setSubmitting(true);
+      const res = await signUp(formValues);
+      if (res.status === 401) setSignUpError(res.value.toString());
+      else setSignUpSuccessful(true);
+      setSubmitting(false);
     } else {
       // Handle Log In logic
-      console.log("Logging in with form values:", formValues);
+      setSubmitting(true);
+      const res = await signIn(formValues);
+      if (res.status === 401) setLogInError(res.value.toString());
+      else window.location.reload();
+      setSubmitting(false);
     }
   };
 
@@ -100,70 +113,82 @@ function Auth({ action }: AuthPageProps) {
               <Form>
                 {action === "SIGNUP" ? (
                   <>
-                    <div className={styles.twoFields}>
-                      <div className={styles.oneOfTwo}>
-                        <label>First Name</label>
-                        <div className={styles.inputDiv}>
-                          <Field type="text" name="firstName" />
+                    {!signUpSuccessful ? (
+                      <>
+                        <div className={styles.twoFields}>
+                          <div className={styles.oneOfTwo}>
+                            <label>First Name</label>
+                            <div className={styles.inputDiv}>
+                              <Field type="text" name="firstName" />
+                            </div>
+                            <ErrorMessage
+                              name="firstName"
+                              component="div"
+                              className={styles.errorMessage}
+                            />
+                          </div>
+                          <div className={styles.oneOfTwo}>
+                            <label>Last Name</label>
+                            <div className={styles.inputDiv}>
+                              <Field type="text" name="lastName" />
+                            </div>
+                            <ErrorMessage
+                              name="lastName"
+                              component="div"
+                              className={styles.errorMessage}
+                            />
+                          </div>
                         </div>
-                        <ErrorMessage
-                          name="firstName"
-                          component="div"
-                          className={styles.errorMessage}
-                        />
-                      </div>
-                      <div className={styles.oneOfTwo}>
-                        <label>Last Name</label>
-                        <div className={styles.inputDiv}>
-                          <Field type="text" name="lastName" />
+                        <div className={styles.formRow}>
+                          <label>Email Address</label>
+                          <div className={styles.inputDiv}>
+                            <Field type="email" name="email" />
+                          </div>
+                          <ErrorMessage
+                            name="email"
+                            component="div"
+                            className={styles.errorMessage}
+                          />
                         </div>
-                        <ErrorMessage
-                          name="lastName"
-                          component="div"
-                          className={styles.errorMessage}
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.formRow}>
-                      <label>Email Address</label>
-                      <div className={styles.inputDiv}>
-                        <Field type="email" name="email" />
-                      </div>
-                      <ErrorMessage
-                        name="email"
-                        component="div"
-                        className={styles.errorMessage}
-                      />
-                    </div>
-                    <div className={styles.twoFields}>
-                      <div className={styles.oneOfTwo}>
-                        <label>Password</label>
-                        <div className={styles.inputDiv}>
-                          <Field type="password" name="password" />
+                        <div className={styles.twoFields}>
+                          <div className={styles.oneOfTwo}>
+                            <label>Password</label>
+                            <div className={styles.inputDiv}>
+                              <Field type="password" name="password" />
+                            </div>
+                            <ErrorMessage
+                              name="password"
+                              component="div"
+                              className={styles.errorMessage}
+                            />
+                          </div>
+                          <div className={styles.oneOfTwo}>
+                            <label>Confirm Password</label>
+                            <div className={styles.inputDiv}>
+                              <Field type="password" name="confirmPassword" />
+                            </div>
+                            <ErrorMessage
+                              name="confirmPassword"
+                              component="div"
+                              className={styles.errorMessage}
+                            />
+                          </div>
                         </div>
-                        <ErrorMessage
-                          name="password"
-                          component="div"
-                          className={styles.errorMessage}
+                        {signUpError && (
+                          <div className={styles.errorspace}>{signUpError}</div>
+                        )}
+                        <AuthButton
+                          name="Sign Up"
+                          type="submit"
+                          disabled={formikProps.isSubmitting}
                         />
+                      </>
+                    ) : (
+                      <div className={styles.signUpSuccesfulDiv}>
+                        <i className="material-icons-outlined">check_circle</i>
+                        <div>Check email for next Instructions</div>
                       </div>
-                      <div className={styles.oneOfTwo}>
-                        <label>Confirm Password</label>
-                        <div className={styles.inputDiv}>
-                          <Field type="password" name="confirmPassword" />
-                        </div>
-                        <ErrorMessage
-                          name="confirmPassword"
-                          component="div"
-                          className={styles.errorMessage}
-                        />
-                      </div>
-                    </div>
-                    <AuthButton
-                      name="Sign Up"
-                      type="submit"
-                      disabled={formikProps.isSubmitting}
-                    />
+                    )}
                   </>
                 ) : (
                   <>
@@ -189,6 +214,21 @@ function Auth({ action }: AuthPageProps) {
                         className={styles.errorMessage}
                       />
                     </div>
+                    {logInError && (
+                      <div className={styles.errorspace}>{logInError}</div>
+                    )}
+
+                    {logInError ===
+                      "AuthApiError: Invalid login credentials" && (
+                      <div className={styles.forgottenpas}>
+                        <Link
+                          href="/auth/resetpassword"
+                          className={styles.forgotpassword}
+                        >
+                          Forgot your password?
+                        </Link>
+                      </div>
+                    )}
                     <AuthButton
                       name="Log In"
                       type="submit"
@@ -199,12 +239,16 @@ function Auth({ action }: AuthPageProps) {
               </Form>
             )}
           </Formik>
-          <div className={styles.otherAuthHeader}>
-            <div>————————————</div>
-            <div>Or</div>
-            <div>—————————————</div>
-          </div>
-          <OtherAuth />
+          {!signUpSuccessful && (
+            <>
+              <div className={styles.otherAuthHeader}>
+                <div>————————————</div>
+                <div>Or</div>
+                <div>—————————————</div>
+              </div>
+              <OtherAuth />
+            </>
+          )}
         </div>
       </div>
     </div>

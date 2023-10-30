@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./SideBar.module.scss";
 import { SideBarItemInterface, items } from "@/constants/sidebaritems";
-import { domainName } from "@/services/utils";
 
 function SideBarItem({ title, icon, link }: SideBarItemInterface) {
   const router = useRouter();

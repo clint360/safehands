@@ -6,6 +6,7 @@ import sampleuserpic from "./../../assets/images/face21.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import NotificationsWrapper from "../molecules/NotifactionsWrapper";
+import SignOut from "../templates/auth/components/SignOut";
 
 function NavBar() {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState<boolean>(false);
@@ -38,15 +39,7 @@ function NavBar() {
           </div>
         </Link>
         <div className={styles.downarrow}>
-          <select name="slct" id="slct" defaultValue={''}>
-              <option style={{display: "none"}}></option>
-               <option value="1" className={styles.selectopt}>
-                    Website 🏠
-                </option>
-                <option value="1" className={styles.selectopt}>
-                    Log Out 📴
-                </option>
-            </select>
+          <SignOut />
         </div>
       </div>
     </div>

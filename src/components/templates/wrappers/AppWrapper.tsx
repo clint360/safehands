@@ -1,3 +1,7 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
 import styles from './AppWrapper.module.scss'
@@ -13,8 +17,16 @@ if (typeof window !== "undefined") {
   }
 
 const AppWrapper = (Page: NextPage, title: string) : NextPage => {
-   
-    function AppPage() {
+  async function AppPage() {
+    const supabase = createServerComponentClient({ cookies });
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+  
+    if (!user) {
+      redirect('/auth/login');
+    } 
+
   return (
     <div className={styles.mainApp} style={{height: viewHeight}}>
         <NavBar />

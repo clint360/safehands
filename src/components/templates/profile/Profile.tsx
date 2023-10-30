@@ -1,6 +1,4 @@
-import React from 'react'
-
-function Profile() {
+export async function Profile() {
   return (
     <div>Profile</div>
   )
