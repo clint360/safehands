@@ -1,0 +1,1 @@
+export const reportStatuses = ['RECIEVED', 'REVIEWED', 'REJECTED', 'DONE'] 

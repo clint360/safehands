@@ -64,3 +64,23 @@ export function getTimeDifference(timestamp: any): string {
     const formattedDateTime = `${dayOfWeek}, ${dayOfMonth} ${month} ${year} at ${hours}:${minutes}${ampm}`;
     return formattedDateTime;
   }
+
+  export async function getLocationName(latitude: number, longitude: number) {
+    const apiKey = process.env.NEXT_PUBLIC_OPENCAGE_API_KEY;
+    const apiUrl = `https://api.opencagedata.com/geocode/v1/json?key=${apiKey}&q=${latitude}+${longitude}&pretty=1`;
+  
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+  
+      if (data.results && data.results.length > 0) {
+        const locationName = data.results[0].formatted;
+        return locationName;
+      } else {
+        return 'Location not found';
+      }
+    } catch (error) {
+      console.error('Error retrieving location:', error);
+      return null;
+    }
+  }

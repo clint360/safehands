@@ -1,0 +1,108 @@
+.reporterdetails {
+    margin-left: 1.2rem;
+    font-family: 'Mulish' sans-serif;
+    .header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 5px 0;
+        color: #696969;
+    }
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    height: 1.8rem;
+
+    .detailtitle {
+        width: 150px;
+    }
+
+    .detaildata {
+        color: blue;
+    }
+}
+
+.reportbody {
+    margin-top: 20px;
+    margin-left: 1.2rem;
+    font-family: Lato;
+
+    .header {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 5px 0;
+        color: #696969;
+    }
+
+    .body {
+        min-height: 10rem;
+        margin-bottom: 25px;
+        max-width: 500px;
+        
+        @media screen and (max-width: 736px) {
+            width: 95%;
+        }
+
+        img {
+            max-width: 500px;
+            margin: 10px 0;
+            @media screen and (max-width: 736px) {
+                width: 90%;
+            }
+        }
+    }
+
+}
+
+.updateStaus {
+    margin-left: 1.2rem;
+    width: 500px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.button23 {
+    background: #3dc050;
+    border: 1px solid #3d8023;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 5px 20px;
+    margin: 0 10px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    transition: all 0.2s ease-in;
+}
+
+.button23:hover,
+.button23:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+    border: 1px solid #FF4742;
+}
+
+
+.printreport {
+    button {
+        margin-left: 1.3rem;
+        padding: 0.3rem;
+        cursor: pointer;
+    }
+}

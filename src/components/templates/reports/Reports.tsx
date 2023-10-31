@@ -21,8 +21,9 @@ function Reports({user}: ReportProps) {
       console.log(reports)
       setReports(reports)
      } else {
-      const reports = await getReportsForUser(user.id, userData.fingerprint)
+      const reports = await getReportsForUser(userData.fingerprint, user.id)
       console.log(reports)
+      reports && setReports(reports)
      }
     }
   fetchReports()

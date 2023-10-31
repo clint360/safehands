@@ -10,8 +10,13 @@ import Select from "react-select";
 import { childAbuseCategories } from "@/constants/categories";
 import Loader from "../atoms/Loader";
 import { createNewReport } from "@/services/reports";
+import { User } from "@supabase/auth-helpers-nextjs";
 
 export const fingerprint = `${navigator.userAgent.toString()}-${navigator.platform.toString()}`;
+
+interface ReportingFormProps {
+  user: User
+}
 
 // Define Yup validation schema
 const validationSchema = Yup.object().shape({
@@ -29,7 +34,7 @@ const anonymousValidationSchema = Yup.object().shape({
   location: Yup.string().required("Location is required"),
 });
 
-function ReportingForm({ user }: any) {
+function ReportingForm({ user }: ReportingFormProps) {
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [whatHappened, setWhatHappened] = useState<any>(null);
   const [abuseCategory, setAbuseCategory] = useState<any>(null);
@@ -91,7 +96,7 @@ function ReportingForm({ user }: any) {
         whatHappened: whatHappened,
         derivedLocation: derivedLocation,
         fingerprint: fingerprint,
-        userId: user.id || null
+        userId: user?.id || null
       };
       const res = await createNewReport(report);
       res && res !== true ? setSubmissionError(true) : setHasSubmitted(true);
@@ -110,7 +115,7 @@ function ReportingForm({ user }: any) {
         whatHappened: whatHappened,
         derivedLocation: derivedLocation,
         fingerprint: fingerprint,
-        userId: user.id || null
+        userId: user?.id || null
       };
       const res = await createNewReport(report);
       res && res !== true ? setSubmissionError(true) : setHasSubmitted(true);

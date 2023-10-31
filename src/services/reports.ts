@@ -35,9 +35,21 @@ export async function getAllReports() {
      else return data
     }
 
-export async function getReportsForUser(userId: string, fingerprint: string) {
-
-}
+export async function getReportsForUser(fingerprint: string | undefined, userId: string | undefined): Promise<any[] | null> {
+    let query = supabase.from('reports').select('*')
+  if (fingerprint) {
+    query = query.eq('fingerprint', fingerprint)
+  }
+  if (userId) {
+    query = query.eq('userId', userId)
+  }
+  const { data, error } = await query
+  if (error) {
+    console.log(error)
+    return []
+  }
+  return data
+  }
 
 export async function getReportById(reportId: string) {
     try {
@@ -76,3 +88,25 @@ export async function updateReportById(id: string, updatedFields: Record<any, an
       return null;
     }
   }
+
+//   async function countUnseenReports() {
+//     try {
+//       const { data, error } = await supabase
+//         .from('your-table-name')
+//         .select('id', { count: 'exact', head: true })
+//         .eq('seen', false);
+  
+//       if (error) {
+//         throw error;
+//       }
+  
+//       if (data.length > 0) {
+//         return data[0].count;
+//       } else {
+//         return 0;
+//       }
+//     } catch (error) {
+//       console.error('Error counting unseen reports:', error.message);
+//       return null;
+//     }
+//   }
