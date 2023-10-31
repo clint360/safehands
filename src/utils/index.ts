@@ -1,4 +1,6 @@
-export const domainName = "http://localhost:3000";
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
+export const supabase = createClientComponentClient()
 
 export function getTimeDifference(timestamp: any): string {
     const now = new Date();
@@ -21,5 +23,23 @@ export function getTimeDifference(timestamp: any): string {
       } ago.`;
     } else {
       return `Just now`;
+    }
+  }
+
+  export async function countRowsInTable(tableName: any) {
+    try {
+      const { data, error } = await supabase
+        .from(tableName)
+        .select('*', { count: 'exact' });
+  
+      if (error) {
+        throw new Error(error.message);
+      }
+  
+      // Access the count result from the response
+      const count = data.length > 0 ? data[0].count : 0;
+      return count;
+    } catch (error) {
+      console.error('Error counting rows:', error);
     }
   }

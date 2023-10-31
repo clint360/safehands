@@ -8,7 +8,7 @@ import Link from "next/link";
 import NotificationsWrapper from "../molecules/NotifactionsWrapper";
 import SignOut from "../templates/auth/components/SignOut";
 
-function NavBar() {
+function NavBar({user}: any) {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState<boolean>(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unseenNotificationsCount, setUnseenNotificationsCount] = useState<number>(0);
@@ -35,7 +35,9 @@ function NavBar() {
           />
         <Link href={"/app/profile"}>
           <div className={styles.accountcircle}>
-            <Image src={sampleuserpic} alt="" />
+            { user.user_metadata.avatarImage ?
+            <Image src={user.user_metadata.avatarImage} alt="" /> : <Image src={sampleuserpic} alt="" /> 
+          }
           </div>
         </Link>
         <div className={styles.downarrow}>

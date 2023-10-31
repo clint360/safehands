@@ -2,33 +2,54 @@ import React from "react";
 import styles from "./Reports.module.scss";
 import ReportTag from "@/components/atoms/Tag";
 
-function Report() {
+interface ReportProps {
+  whatHappened: string;
+  date: string;
+  isAnonymous: boolean;
+  reporterData: Record<string, string>;
+  location: string
+  status: string
+  no: number
+  reportId: string
+}
+
+function Report({
+  whatHappened,
+  date,
+  isAnonymous,
+  reporterData,
+  location,
+  status,
+  no,
+  reportId
+}: ReportProps) {
   return (
     <div className={styles.report}>
       <div className={styles.marker} />
-      <div className={styles.reportTitle}>Child Beating</div>
+      <div className={styles.reportTitle}>
+        {whatHappened}
+      </div>
+      {/* 
       <div className={styles.reportCategory}>
         <i className="material-icons-outlined">category</i>
         <span> PHYSICAL ABUSE</span>
-      </div>
+      </div> */}
       <div className={styles.reporterDetail}>
         <i className="material-icons-outlined">contact_mail</i>
-        <span>+237680612360</span>
+        <span>{ (!isAnonymous) ? <a href={`tel:${reporterData?.phoneNumber}`}>{reporterData?.phoneNumber} </a>: "ANONYMOUS"}</span>
       </div>
       <div className={styles.dateAndTime}>
-        <i className="material-icons-outlined">calendar_month</i> Monday, 28th
-        <span>July 2023, 5:15pm</span>
+        <i className="material-icons-outlined">calendar_month</i>
+        <span>{date}</span>
       </div>
       <div className={styles.location}>
         <i className="material-icons-outlined">location_on</i>
-        <span>Abuja, Nigeria</span>
+        <span>{location}</span>
       </div>
       <div className={styles.reportTag}>
-        <ReportTag status="RECIEVED">RECIEVED</ReportTag>
+        <ReportTag status="RECIEVED">{status}</ReportTag>
       </div>
-      <div className={styles.hashtag}>
-        #45
-      </div>
+      <div className={styles.hashtag}>{`#${no}`}</div>
     </div>
   );
 }

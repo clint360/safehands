@@ -1,12 +1,11 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { NextPage } from 'next';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './AppWrapper.module.scss'
 import NavBar from '@/components/organisms/NavBar';
 import SideBar from '@/components/organisms/SideBar';
+import { AppNextPage } from '@/domains/Page';
 
 let viewHeight : string
 
@@ -16,7 +15,7 @@ if (typeof window !== "undefined") {
     viewHeight = `calc(100vh - 10px)`
   }
 
-const AppWrapper = (Page: NextPage, title: string) : NextPage => {
+const AppWrapper = (Page: AppNextPage, title: string) : AppNextPage => {
   async function AppPage() {
     const supabase = createServerComponentClient({ cookies });
     const {
@@ -29,14 +28,14 @@ const AppWrapper = (Page: NextPage, title: string) : NextPage => {
 
   return (
     <div className={styles.mainApp} style={{height: viewHeight}}>
-        <NavBar />
+        <NavBar user={user}/>
         <div className={styles.bodySection}>
             <div>
-                <SideBar />
+                <SideBar user={user} />
             </div>
             <div className={styles.page}>
                 <h1 className={styles.headertitle}>{title}</h1>
-                <Page />
+                <Page user={user} />
             </div>
         </div>
     </div>

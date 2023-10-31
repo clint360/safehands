@@ -15,7 +15,7 @@ function Home() {
       </p>
       <div className="buttons">
         <button className="button-24" onClick={()=>{scrollTo('report')}}>REPORT ABUSE CASE</button>
-        <Link href={'/auth/signup'}><button className="button-23">VIEW REPORT STATUS</button></Link>
+        <Link href={'/auth/login'}><button className="button-23">VIEW REPORT STATUS</button></Link>
       </div>
     </div>  
       <hr />

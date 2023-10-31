@@ -63,8 +63,13 @@
 }
 
 .reportTitle {
-    width: 15%;
+    width: 25%;
+    max-width: 25%;
+    padding-right: 20px;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     @media screen and (max-width: 736px) {
         width: 100%;
         height: 30px;
@@ -72,21 +77,21 @@
     }
 }
 
-.reportCategory {
-    width: 15%;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+// .reportCategory {
+//     width: 15%;
+//     display: flex;
+//     align-items: center;
+//     gap: 0.4rem;
     
-    i {
-        font-size: 1.2rem;
-        color: #696969;
-    }
+//     i {
+//         font-size: 1.2rem;
+//         color: #696969;
+//     }
     
-    @media screen and (max-width: 736px) {
-        width: 100%;
-    }
-}
+//     @media screen and (max-width: 736px) {
+//         width: 100%;
+//     }
+// }
 
 .reporterDetail {
     width: 15%;

@@ -30,7 +30,7 @@ function SideBarItem({ title, icon, link }: SideBarItemInterface) {
   );
 }
 
-function SideBar() {
+function SideBar({user}: any) {
   return (
     <div className={styles.sidebarmain}>
       {items.map((item, index) => {

@@ -4,6 +4,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   margin-right: -150px;
 
    @media screen and (max-width: 736px) {
       padding: 10px 30px;
@@ -16,7 +17,7 @@
 
      @media screen and (max-width: 736px) {
       padding: 10px 30px;
-      width: 80%;
+      width: 90%;
       margin-left: 10px;
    }
    }
@@ -37,9 +38,9 @@
     padding: 5px 10px;
    }
   }
-  
+   
+
   .inputDiv {
-    margin-top: 5px;
     border-radius: 5px;
     border: 1px solid rgba(128, 128, 128, 0.448);
     height: 2.2rem;

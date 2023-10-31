@@ -1,7 +1,7 @@
 "use client";
 import styled from "@emotion/styled";
 import React from "react";
-import { getTimeDifference } from "../../services/utils";
+import { getTimeDifference } from "@/utils";
 import { css } from "@emotion/react";
 
 interface NotificationsWrapperProps {

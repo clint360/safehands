@@ -1,3 +1,4 @@
+import { fingerprint } from '@/components/organisms/ReportingForm';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { redirect } from 'next/navigation';
 const supabase = createClientComponentClient();
@@ -20,6 +21,15 @@ export async function signUp(formData: any) {
       email: formData.email,
       password: formData.password,
       options: {
+        data: {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        isAdmin: false,
+        phone: '',
+        avatarImage: null,
+        email: formData.email,
+        fingerPrint: fingerprint 
+      },
         emailRedirectTo: '/app/reports'
       }
     });

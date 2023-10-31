@@ -4,6 +4,7 @@ import { createContext, useEffect } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
 
+
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ accessToken, children }: any) => {
