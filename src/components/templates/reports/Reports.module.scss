@@ -44,7 +44,6 @@
 
 .marker {
     width: 5px;
-    background: rgb(96, 23, 255);
     height: 3rem;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
@@ -59,39 +58,42 @@
         width: 3px;
         margin-left: -10px;
         margin-top: -10px;
+        z-index: 999;
     }
 }
 
 .reportTitle {
-    width: 25%;
-    max-width: 25%;
-    padding-right: 20px;
+    width: 16%;
+    max-width: 16%;
+    margin-right: 40px;
     font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
     @media screen and (max-width: 736px) {
-        width: 100%;
+        width: 90vw;
+        max-width: 90vw;
         height: 30px;
         display: flex;
     }
 }
 
-// .reportCategory {
-//     width: 15%;
-//     display: flex;
-//     align-items: center;
-//     gap: 0.4rem;
+.reportCategory {
+    width: 18%;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
     
-//     i {
-//         font-size: 1.2rem;
-//         color: #696969;
-//     }
+    i {
+        font-size: 1.2rem;
+        color: #696969;
+    }
     
-//     @media screen and (max-width: 736px) {
-//         width: 100%;
-//     }
-// }
+    @media screen and (max-width: 736px) {
+        width: 100%;
+    }
+}
 
 .reporterDetail {
     width: 15%;
@@ -162,3 +164,36 @@
     color: rgb(255, 21, 60);
 }
 
+.newReport {
+    background: #3dc050;
+    border: 1px solid #3d8023;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 5px 20px;
+    margin: 0 10px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    transition: all 0.2s ease-in;
+}
+
+.newReport:hover,
+.newReport:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+    border: 1px solid #FF4742;}

@@ -2,15 +2,28 @@
 import styles from "./Reports.module.scss";
 import Report from "./Report";
 import { useEffect, useState } from "react";
-import { getAllReports } from "@/services/reports";
+import { getAllReports, getReportsForUser } from "@/services/reports";
 import Link from "next/link";
+import { User } from "@supabase/auth-helpers-nextjs";
 
-function Reports() {
+interface ReportProps {
+  user: User
+}
+
+function Reports({user}: ReportProps) {
+  const userData = user.user_metadata
   const [reports, setReports] = useState<any[]>([])
   
   useEffect(()=>{
     async function fetchReports(){
-     
+     if(userData.isAdmin) {
+      const reports = await getAllReports()
+      console.log(reports)
+      setReports(reports)
+     } else {
+      const reports = await getReportsForUser(user.id, userData.fingerprint)
+      console.log(reports)
+     }
     }
   fetchReports()
   },[])
@@ -20,19 +33,22 @@ function Reports() {
       className={styles.reports}
       style={{ width: `${window.innerWidth - 160}px` }}
     >
-      <Link href={'/app/reports/new'}><button className={styles.newReport}>New Report</button></Link>
+     {!userData.isAdmin && <Link href={'/app/reports/new'}><button className={styles.newReport}>New Report</button></Link>} 
       <div className={styles.reportsContainer}>
       {
         reports?.map((report, index)=>{return (
           <Report
+          reportId={report.id}
           whatHappened={report.whatHappened}
-          date={report.date}
+          date={report.createdAt}
+          category={report.abuseCategory}
           isAnonymous={report.isAnonymous}
-          reporterData={report.reporterData}
+          reporterData={report.phoneNumber}
           location={report.location}
           status={report.status}
-          no={report.no}
-          reportId={report.id} />
+          no={index+1}
+          seen={report.seen}
+           />
         )})
       }
       </div>

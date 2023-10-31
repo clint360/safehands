@@ -43,3 +43,24 @@ export function getTimeDifference(timestamp: any): string {
       console.error('Error counting rows:', error);
     }
   }
+
+  export function convertDateTime(dateTimeStr: string) {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+  
+    const dateTime = new Date(dateTimeStr);
+    const dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][dateTime.getDay()];
+    const month = months[dateTime.getMonth()];
+    const dayOfMonth = dateTime.getDate();
+    const year = dateTime.getFullYear();
+    let hours = dateTime.getHours();
+    let minutes = dateTime.getMinutes();
+    let ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? parseInt('0' + minutes) : minutes;
+    const formattedDateTime = `${dayOfWeek}, ${dayOfMonth} ${month} ${year} at ${hours}:${minutes}${ampm}`;
+    return formattedDateTime;
+  }

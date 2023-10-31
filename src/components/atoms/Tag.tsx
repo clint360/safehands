@@ -10,16 +10,30 @@ interface ReportTagProps {
 import React, { ReactNode } from 'react'
 
 function ReportTag({children, status}: ReportTagProps) {
+
+  function getColor(status: ReportStatus) {
+    switch(status){
+      case 'REVIEWED':
+      return 'green'
+      case 'REJECTED':
+      return 'red'
+      case 'RECIEVED':
+      return 'black'
+      case 'DONE':
+      return 'blue'
+    }
+  }
+
   const tagStyle = {
     height: "auto",
-    background: "black",
+    background: getColor(status),
     fontSize: "0.8rem",
     fontWeight: "bold",
     padding: "3px 10px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    color: "white",
+    color: 'white',
     borderRadius: "10px"
   }
   return (

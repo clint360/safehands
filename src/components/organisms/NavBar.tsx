@@ -36,7 +36,7 @@ function NavBar({user}: any) {
         <Link href={"/app/profile"}>
           <div className={styles.accountcircle}>
             { user.user_metadata.avatarImage ?
-            <Image src={user.user_metadata.avatarImage} alt="" /> : <Image src={sampleuserpic} alt="" /> 
+            <Image src={user.user_metadata.avatarImage} alt="" width={40} height={40} /> : <Image src={sampleuserpic} alt="" /> 
           }
           </div>
         </Link>

@@ -119,7 +119,14 @@ function ReportingForm({ user }: any) {
   };
 
   return (
-    <div style={{ width: `${window.innerWidth - 160}px` }}>
+    <div
+    style={{
+      width: `${
+        window.innerWidth > 736
+          ? window.innerWidth - 180
+          : window.innerWidth - 50
+      }px`,
+    }}>
       {hasSubmitted === true ? (
         <div style={{textAlign: "center", color: "green"}}>Your Report Has been Submitted</div>
       ) : (
@@ -243,7 +250,7 @@ function ReportingForm({ user }: any) {
                           <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="button-23"
+                            className={styles.button23}
                           >
                             {isSubmitting ? <Loader size={20} /> : "Submit"}
                           </button>
@@ -341,7 +348,7 @@ function ReportingForm({ user }: any) {
                             <button
                               type="submit"
                               disabled={isSubmitting}
-                              className="button-23"
+                              className={styles.button23}
                             >
                               {isSubmitting ? <Loader size={20} /> : "Submit"}
                             </button>

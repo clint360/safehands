@@ -30,9 +30,49 @@ export async function getAllReports() {
 
     if (error) { 
         console.log(error);
-        return error
+        return []
      }
      else return data
     }
 
-export async function getReportsForUser(userId: string, fingerprint: string) {}
+export async function getReportsForUser(userId: string, fingerprint: string) {
+
+}
+
+export async function getReportById(reportId: string) {
+    try {
+        const { data, error } = await supabase
+          .from('reports')
+          .select()
+          .eq('id', reportId)
+          .limit(1)
+          .single();
+    
+        if (error) {
+          throw error;
+        }
+    
+        return data;
+      } catch (error) {
+        console.error('Error retrieving item:');
+        return null;
+      }
+}
+
+export async function updateReportById(id: string, updatedFields: Record<any, any>) {
+    try {
+      const { data, error } = await supabase
+        .from('reports')
+        .update(updatedFields)
+        .eq('id', id);
+  
+      if (error) {
+        throw error;
+      }
+  
+      return data;
+    } catch (error) {
+      console.error('Error updating report:');
+      return null;
+    }
+  }
