@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import {
   BarChart,
@@ -17,9 +17,18 @@ import Text from "@/components/atoms/Text";
 import CountUp from "react-countup";
 import { User } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
+import {
+  countAllReports,
+  countReceivedReports,
+  countRejectedReports,
+  countReviewedReports,
+  getReportCountsByCategory,
+} from "@/services/reports";
+import { childAbuseCategories } from "@/constants/categories";
+import { createProfile } from "@/services/users";
 
 interface DashboardProps {
-  user: User
+  user: User;
 }
 
 const Grid = styled.div`
@@ -63,29 +72,52 @@ const StatCard = styled.div<{
   }
 `;
 
-function Dashboard({user}:DashboardProps){
-  const userData = user.user_metadata
+function Dashboard({ user }: DashboardProps) {
+  const userData = user.user_metadata;
 
-  useEffect(()=>{
-  if(!userData.isAdmin) redirect('/app/reports')
-  },[])
+  useEffect(() => {
+    if (!userData.isAdmin) redirect("/app/reports");
+  }, []);
 
-    // Sample data for analytics
-    const reportsReceived = 156;
-    const reportsReviewed = 78;
-    const reportsPending = 78;
-    const reporters = 20;
-  
+  // Sample data for analytics
+  const [reportsReceived, setReportsReceived] = useState(0);
+  const [reportsReviewed, setReportsReviewed] = useState(0);
+  const [reportsPending, setReportsPending] = useState(0);
+  const [reportsRejected, setReportsRejected] = useState(0);
+  const [barChartData, setBarChartData] = useState<any>([]);
 
-  // Sample data for bar chart
-  const barChartData = [
-    { category: "Category A", reports: 12 },
-    { category: "Category B", reports: 19 },
-    { category: "Category C", reports: 3 },
-    { category: "Category D", reports: 5 },
-    { category: "Category E", reports: 2 },
-  ];
+  useEffect(() => {
+    async function fetchReportCounts() {
 
+      await createProfile({
+        id: user?.id,
+        isAdmin: user?.user_metadata.isAdmin,
+        email: user?.email
+      }) 
+
+      const totalReports = await countAllReports();
+      const reviewedReports = await countReviewedReports(); // Define the actual count of reviewed reports
+      const pendingReports = await countReceivedReports();
+      const rejectedReports = await countRejectedReports(); // Define the actual count of reporters
+
+      totalReports && setReportsReceived(totalReports);
+      reviewedReports && setReportsReviewed(reviewedReports);
+      pendingReports && setReportsPending(pendingReports);
+      rejectedReports && setReportsRejected(rejectedReports);
+
+      const chartData = []
+      for (let i = 0; i < childAbuseCategories.length; i++) {
+        const countForCategory = await getReportCountsByCategory(
+          childAbuseCategories[i].value
+        );
+        console.log(childAbuseCategories[i].value, countForCategory);
+        chartData.push({ category: childAbuseCategories[i], reports: countForCategory })
+      }
+      setBarChartData(chartData);
+    }
+
+    fetchReportCounts();
+  }, []);
   // Sample data for the line chart
   const lineData = [
     { month: "January", categoryA: 10, categoryB: 15 },
@@ -129,10 +161,10 @@ function Dashboard({user}:DashboardProps){
           </StatCard>
           <StatCard index={4}>
             <Text color="white" weight="bold">
-              Reporters
+              Rejected
             </Text>
             <Text color="white" size="large" weight="bold">
-              <CountUp end={reporters} />
+              <CountUp end={reportsRejected} />
             </Text>
           </StatCard>
         </Grid>
@@ -140,9 +172,13 @@ function Dashboard({user}:DashboardProps){
       <br />
       <br />
       <div className="chartContainer">
-        <div className="chartdiv" style={{width: `100%`}}>
+        <div className="chartdiv" style={{ width: `100%` }}>
           <BarChart
-            width={window.innerWidth > 736 ? (window.innerWidth/2 - 100) : (window.innerWidth-50)}
+            width={
+              window.innerWidth > 736
+                ? window.innerWidth / 2 - 100
+                : window.innerWidth - 50
+            }
             height={300}
             data={barChartData}
           >
@@ -156,7 +192,11 @@ function Dashboard({user}:DashboardProps){
         </div>
         <div className="chartdiv">
           <LineChart
-            width={window.innerWidth > 736 ? (window.innerWidth/2 - 100) : (window.innerWidth-50)}
+            width={
+              window.innerWidth > 736
+                ? window.innerWidth / 2 - 100
+                : window.innerWidth - 50
+            }
             height={300}
             data={lineData}
           >
@@ -178,6 +218,6 @@ function Dashboard({user}:DashboardProps){
       </div>
     </div>
   );
-};
+}
 
 export default Dashboard;

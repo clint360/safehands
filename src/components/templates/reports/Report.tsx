@@ -35,10 +35,7 @@ function Report({
       <div className={styles.report}>
         <div className={styles.marker} style={{background: !seen ? 'red' : 'rgb(96, 23, 255)'}}/>
         <div className={styles.reportTitle}>
-          <span
-            style={{ width: "auto", maxWidth: "95%", overflow: "hidden" }}
-            dangerouslySetInnerHTML={{ __html: whatHappened }}
-          />
+          {whatHappened}
         </div>
         <div className={styles.reportCategory}>
           <i className="material-icons-outlined">category</i>

@@ -11,6 +11,7 @@ import Select from "react-select";
 import { reportStatuses } from "@/constants/reports";
 import Loader from "@/components/atoms/Loader";
 import PrintReport from "../print/PrintReport";
+import { reportStatusUpdateNotification } from "@/services/notifications";
 
 interface ReportDetailsProps {
   user: User;
@@ -45,6 +46,7 @@ function ReportDetails({ user }: ReportDetailsProps) {
   async function onUpdate() {
     setIsUpdating(true)
     reportId && await updateReportById(reportId.toString(), { status: currentStatus.value })
+    report.userId && await reportStatusUpdateNotification(report.userId)
     setIsUpdating(false)
     window.location.reload()
   }

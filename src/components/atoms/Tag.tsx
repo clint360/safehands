@@ -17,7 +17,7 @@ function ReportTag({children, status}: ReportTagProps) {
       return 'green'
       case 'REJECTED':
       return 'red'
-      case 'RECIEVED':
+      case 'RECEIVED':
       return 'black'
       case 'DONE':
       return 'blue'

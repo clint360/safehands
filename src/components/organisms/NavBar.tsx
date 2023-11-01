@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./NavBar.module.scss";
 import Logo from "../atoms/Logo";
 import sampleuserpic from "./../../assets/images/face21.jpg";
@@ -7,14 +7,35 @@ import Image from "next/image";
 import Link from "next/link";
 import NotificationsWrapper from "../molecules/NotifactionsWrapper";
 import SignOut from "../templates/auth/components/SignOut";
+import { User } from "@supabase/auth-helpers-nextjs";
+import { getNotificationsForUser, getUnseenNotificationsCount, updateNotificationsToSeen } from "@/services/notifications";
 
-function NavBar({user}: any) {
+interface NavbarProps {
+  user: User
+}
+
+function NavBar({user}: NavbarProps) {
+  const userData = user.user_metadata
   const [isNotificationsOpen, setIsNotificationsOpen] = useState<boolean>(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unseenNotificationsCount, setUnseenNotificationsCount] = useState<number>(0);
 
-  const setOpen = () => {
-     if(isNotificationsOpen === true) setIsNotificationsOpen(false)
+  useEffect(()=>{
+    async function getNotifications() {
+      const nots = await getNotificationsForUser(user.id)
+      nots && setNotifications(nots)
+      const unseenNotCount = await getUnseenNotificationsCount(user.id)
+      console.log(unseenNotCount)
+      unseenNotCount && setUnseenNotificationsCount(unseenNotCount) 
+    }
+    getNotifications()
+  },[])
+
+  const setOpen = async () => {
+     if(isNotificationsOpen === true) {
+      await updateNotificationsToSeen(user.id)
+      setIsNotificationsOpen(false)
+     }
      else setIsNotificationsOpen(true)
   }
 
@@ -25,7 +46,7 @@ function NavBar({user}: any) {
       </div>
       <div className={styles.detailssection}>
         <div className={styles.notificationicon} onClick={setOpen}>
-          <div className={styles.notificationdot} />
+          {unseenNotificationsCount > 0 ? <div className={styles.notificationdot} /> : ''}
           <i className="material-icons-outlined">notifications</i>
         </div>
         <NotificationsWrapper

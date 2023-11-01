@@ -1,3 +1,3 @@
-export type ReportStatus  = 'RECIEVED' | 'REVIEWED' | 'REJECTED' | 'DONE'
+export type ReportStatus  = 'RECEIVED' | 'REVIEWED' | 'REJECTED' | 'DONE'
 
 export type Report = any

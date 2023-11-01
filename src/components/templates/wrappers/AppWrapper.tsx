@@ -6,6 +6,7 @@ import styles from './AppWrapper.module.scss'
 import NavBar from '@/components/organisms/NavBar';
 import SideBar from '@/components/organisms/SideBar';
 import { AppNextPage } from '@/domains/Page';
+import { createProfile } from '@/services/users';
 
 let viewHeight : string
 

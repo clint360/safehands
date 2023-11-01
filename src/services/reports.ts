@@ -6,7 +6,7 @@ export async function createNewReport(report: any) {
     derivedLocation: JSON.stringify(report.derivedLocation),
     isAnonymous: report.isAnonymous,
     actions: [],
-    status: 'RECIEVED',
+    status: 'RECEIVED',
     abuseCategory: report.abuseCategory,
     fingerprint: report.fingerprint,
     location: report.location,
@@ -92,7 +92,7 @@ export async function updateReportById(id: string, updatedFields: Record<any, an
   export async function getUnseenReports() {
     try {
       const { data, error } = await supabase
-        .from('your-table-name')
+        .from('reports')
         .select()
         .eq('seen', false);
   
@@ -105,4 +105,61 @@ export async function updateReportById(id: string, updatedFields: Record<any, an
       console.error('Error fetching unseen reports:');
       return null;
     }
+  }
+
+  export async function countAllReports() {
+    const { count, error } = await supabase.from('reports').select('*', { count: 'exact' })
+    if (error) {
+      console.log(error)
+      return 0
+    }
+    return count
+  }
+
+  export async function countReviewedReports() {
+    const { count, error } = await supabase
+      .from('reports')
+      .select('*', { count: 'exact' })
+      .eq('status', 'REVIEWED')
+    if (error) {
+      console.log(error)
+      return 0
+    }
+    return count
+  }
+
+  export async function countReceivedReports() {
+    const { count, error } = await supabase
+      .from('reports')
+      .select('*', { count: 'exact' })
+      .eq('status', 'RECEIVED')
+    if (error) {
+      console.log(error)
+      return 0
+    }
+    return count
+  }
+
+  export async function countRejectedReports() {
+    const { count, error } = await supabase
+      .from('reports')
+      .select('*', { count: 'exact' })
+      .eq('status', 'REJECTED')
+    if (error) {
+      console.log(error)
+      return 0
+    }
+    return count
+  }
+
+  export async function getReportCountsByCategory(category: string) {
+    const { count, error } = await supabase
+      .from('reports')
+      .select('*', { count: 'exact' })
+      .eq('abuseCategory', category)
+    if (error) {
+      console.log(error)
+      return 0
+    }
+    return count
   }

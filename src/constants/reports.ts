@@ -1,1 +1,1 @@
-export const reportStatuses = ['RECIEVED', 'REVIEWED', 'REJECTED', 'DONE'] 
+export const reportStatuses = ['RECEIVED', 'REVIEWED', 'REJECTED', 'DONE'] 

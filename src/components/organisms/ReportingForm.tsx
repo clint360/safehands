@@ -11,6 +11,7 @@ import { childAbuseCategories } from "@/constants/categories";
 import Loader from "../atoms/Loader";
 import { createNewReport } from "@/services/reports";
 import { User } from "@supabase/auth-helpers-nextjs";
+import { newReportNotification } from "@/services/notifications";
 
 export const fingerprint = `${navigator.userAgent.toString()}-${navigator.platform.toString()}`;
 
@@ -98,6 +99,7 @@ function ReportingForm({ user }: ReportingFormProps) {
         fingerprint: fingerprint,
         userId: user?.id || null
       };
+      await newReportNotification()
       const res = await createNewReport(report);
       res && res !== true ? setSubmissionError(true) : setHasSubmitted(true);
       setSubmitting(false);
@@ -118,6 +120,7 @@ function ReportingForm({ user }: ReportingFormProps) {
         userId: user?.id || null
       };
       const res = await createNewReport(report);
+      await newReportNotification()
       res && res !== true ? setSubmissionError(true) : setHasSubmitted(true);
       setSubmitting(false);
     }

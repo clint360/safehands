@@ -5,9 +5,23 @@ import { useEffect, useState } from "react";
 import { getAllReports, getReportsForUser } from "@/services/reports";
 import Link from "next/link";
 import { User } from "@supabase/auth-helpers-nextjs";
+import { createProfile } from "@/services/users";
 
 interface ReportProps {
   user: User
+}
+
+function extractStringFromHTML(html: string) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const element = doc.querySelector('body'); // Replace 'body' with the target element to extract from
+  
+  if (element) {
+    const extractedString = element.textContent && element.textContent.trim();
+    return extractedString || '';
+  } else {
+    return '';
+  }
 }
 
 function Reports({user}: ReportProps) {
@@ -16,6 +30,13 @@ function Reports({user}: ReportProps) {
   
   useEffect(()=>{
     async function fetchReports(){
+     
+    await createProfile({
+      id: user?.id,
+      isAdmin: user?.user_metadata.isAdmin,
+      email: user?.email
+    })
+
      if(userData.isAdmin) {
       const reports = await getAllReports()
       console.log(reports)
@@ -40,7 +61,7 @@ function Reports({user}: ReportProps) {
         reports?.map((report, index)=>{return (
           <Report
           reportId={report.id}
-          whatHappened={report.whatHappened}
+          whatHappened={extractStringFromHTML(report.whatHappened)}
           date={report.createdAt}
           category={report.abuseCategory}
           isAnonymous={report.isAnonymous}
