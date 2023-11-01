@@ -89,24 +89,20 @@ export async function updateReportById(id: string, updatedFields: Record<any, an
     }
   }
 
-//   async function countUnseenReports() {
-//     try {
-//       const { data, error } = await supabase
-//         .from('your-table-name')
-//         .select('id', { count: 'exact', head: true })
-//         .eq('seen', false);
+  export async function getUnseenReports() {
+    try {
+      const { data, error } = await supabase
+        .from('your-table-name')
+        .select()
+        .eq('seen', false);
   
-//       if (error) {
-//         throw error;
-//       }
+      if (error) {
+        throw error;
+      }
   
-//       if (data.length > 0) {
-//         return data[0].count;
-//       } else {
-//         return 0;
-//       }
-//     } catch (error) {
-//       console.error('Error counting unseen reports:', error.message);
-//       return null;
-//     }
-//   }
+      return data;
+    } catch (error) {
+      console.error('Error fetching unseen reports:');
+      return null;
+    }
+  }

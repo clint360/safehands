@@ -1,8 +1,11 @@
+import { User } from "@supabase/auth-helpers-nextjs";
+
 export interface SideBarItemInterface {
   title: string;
   icon: string;
   link: string;
-  adminItem: boolean
+  adminItem: boolean;
+  user?: User
 }
 
 export const items: SideBarItemInterface[] = [

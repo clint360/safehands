@@ -4,14 +4,37 @@ import { useRouter } from "next/navigation";
 import styles from "./SideBar.module.scss";
 import { SideBarItemInterface, items } from "@/constants/sidebaritems";
 import { User } from "@supabase/auth-helpers-nextjs";
+import { getUnseenMessagesCountForId } from "@/services/messages";
+import { getUnseenReports } from "@/services/reports";
 
 interface SideBarProps {
   user: User
 }
 
-function SideBarItem({ title, icon, link }: SideBarItemInterface) {
+async function shouldShowdot(link: string, user: User | undefined) {
+  if(link === '/app/dashboard') return false
+  if(!user?.user_metadata.isAdmin && link === '/app/reports') return false
+  if(link === '/app/messages') {
+    const count = user && await getUnseenMessagesCountForId(user?.id)
+    if(count && count > 0) return true
+  }
+  if(link === '/app/reports' && user?.user_metadata.isAdmin) {
+    const reports = user && await getUnseenReports()
+    if(reports && reports.length > 0) return true
+  }
+}
+
+function SideBarItem({ title, icon, link, user }: SideBarItemInterface) {
   const router = useRouter();
   const [active, setActive] = useState(false);
+  const [shouldShowDot, setShouldShowDot] = useState(false)
+
+  useEffect(()=>{
+    async function show (){
+      setShouldShowDot(await shouldShowdot(link, user) as boolean)
+    }
+    show()
+  })
 
   useEffect(() => {
     setActive(!!window.location.href.includes(link));
@@ -26,7 +49,7 @@ function SideBarItem({ title, icon, link }: SideBarItemInterface) {
       className={`${styles.sidebaritem} ${active && styles.sidebaritemactive}`}
       onClick={action}
     >
-      {<div className={styles.notificationdot} />}
+      {shouldShowDot && <div className={styles.notificationdot} />}
       <div className={styles.sidebaritemicon}>
         <i className="material-icons-outlined">{icon}</i>
       </div>
@@ -47,6 +70,7 @@ function SideBar({ user }: SideBarProps) {
             icon={item.icon}
             link={item.link}
             adminItem={item.adminItem}
+            user={user}
           />
         );
       }) : 
@@ -57,6 +81,7 @@ function SideBar({ user }: SideBarProps) {
             icon={item.icon}
             link={item.link}
             adminItem={item.adminItem}
+            user={user}
           />
         );
       })

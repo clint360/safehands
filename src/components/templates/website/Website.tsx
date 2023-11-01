@@ -1,3 +1,4 @@
+"use client"
 import { User } from '@supabase/auth-helpers-nextjs'
 import { redirect } from 'next/navigation'
 import React, { useEffect } from 'react'
