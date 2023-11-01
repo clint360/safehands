@@ -35,15 +35,17 @@ export function Profile({ user }: ProfileProps) {
         lastName: lastNameRef.current && lastNameRef.current.value || userData.lastName,
         phone: phoneRef.current && phoneRef.current.value ||  userData.phone,
         email: emailRef.current && emailRef.current.value ||  userData.email,
-        avatarImage: avatarImage ||  userData.avatarImage,
-        isAdmin: true
+        avatarImage: avatarImage ||  userData.avatarImage
       },
     });
     if(error) {
       setIsLoading(false)
       setError('There was an error updating user')
     }
-    else setIsLoading(false)
+    else {
+      setIsLoading(false)
+      window.location.reload()
+    } 
   }
 
   function onFileInputChange(event: React.ChangeEvent<HTMLInputElement>) {

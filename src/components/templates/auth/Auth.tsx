@@ -239,16 +239,17 @@ function Auth({ action }: AuthPageProps) {
               </Form>
             )}
           </Formik>
-          {!signUpSuccessful && (
-            <>
-              <div className={styles.otherAuthHeader}>
-                <div>————————————</div>
-                <div>Or</div>
-                <div>—————————————</div>
-              </div>
-              <OtherAuth />
-            </>
-          )}
+          {!signUpSuccessful && 
+            // <>
+            //   <div className={styles.otherAuthHeader}>
+            //     <div>————————————</div>
+            //     <div>Or</div>
+            //     <div>—————————————</div>
+            //   </div>
+            //   <OtherAuth />
+            // </>
+          <div />
+          }
         </div>
       </div>
     </div>

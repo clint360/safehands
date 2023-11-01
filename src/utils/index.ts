@@ -3,29 +3,32 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 export const supabase = createClientComponentClient()
 
 export function getTimeDifference(timestamp: any): string {
-    const now = new Date();
-    const secondsSinceEpoch = now.getTime() / 1000;
-    const secondsSinceTimestamp = secondsSinceEpoch - timestamp.seconds;
-    const minutesSinceTimestamp = Math.floor(secondsSinceTimestamp / 60);
-    const hoursSinceTimestamp = Math.floor(minutesSinceTimestamp / 60);
-    const daysSinceTimestamp = Math.floor(hoursSinceTimestamp / 24);
-  
-    if (daysSinceTimestamp >= 2) {
-      const date = timestamp.toDate();
-      return `${date.toLocaleDateString()}, at ${date.toLocaleTimeString()}`;
-    } else if (hoursSinceTimestamp >= 1) {
-      return `${hoursSinceTimestamp} hour${
-        hoursSinceTimestamp > 1 ? 's' : ''
-      } ago.`;
-    } else if (minutesSinceTimestamp >= 1) {
-      return `${minutesSinceTimestamp} minute${
-        minutesSinceTimestamp > 1 ? 's' : ''
-      } ago.`;
-    } else {
-      return `Just now`;
-    }
-  }
+  const now = new Date();
+  const secondsSinceEpoch = now.getTime() / 1000;
+  const secondsSinceTimestamp = secondsSinceEpoch - new Date(timestamp).getTime() / 1000;
+  const minutesSinceTimestamp = Math.floor(secondsSinceTimestamp / 60);
+  const hoursSinceTimestamp = Math.floor(minutesSinceTimestamp / 60);
+  const daysSinceTimestamp = Math.floor(hoursSinceTimestamp / 24);
 
+  if (daysSinceTimestamp >= 2) {
+    const date = new Date(timestamp);
+    const dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()];
+    const month = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ][date.getMonth()];
+    const dayOfMonth = date.getDate();
+    const year = date.getFullYear();
+    const formattedDateTime = `${dayOfWeek}, ${dayOfMonth} ${month} ${year} at ${date.toLocaleTimeString()}`;
+    return formattedDateTime;
+  } else if (hoursSinceTimestamp >= 1) {
+    return `${hoursSinceTimestamp} hour${hoursSinceTimestamp > 1 ? 's' : ''} ago.`;
+  } else if (minutesSinceTimestamp >= 1) {
+    return `${minutesSinceTimestamp} minute${minutesSinceTimestamp > 1 ? 's' : ''} ago.`;
+  } else {
+    return 'Just now';
+  }
+}
   export async function countRowsInTable(tableName: any) {
     try {
       const { data, error } = await supabase

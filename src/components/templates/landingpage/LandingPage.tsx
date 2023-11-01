@@ -1,25 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./LandingPage.scss";
 import Logo from "@/components/atoms/Logo";
 import Home from "./sections/Home";
 import About from "./sections/About";
 import Report from "./sections/Report";
 import Contact from "./sections/Contact";
-
-let prevScrollpos = window.pageYOffset;;
-const navElement = document.getElementById("navbar")
-window.onscroll = function() {
-  if (!!navElement){
-  const currentScrollPos = window.pageYOffset;;
-  if (prevScrollpos > currentScrollPos) {
-     navElement.style.top = "0";
-  } else {
-     navElement.style.top = "-50px";
-  }
-  prevScrollpos = currentScrollPos;
-}
-}
+import { getWebSite } from "@/services/website";
 
 export function scrollTo(section: string) {
   let element = document.getElementById(`${section}`);
@@ -31,6 +18,22 @@ export function scrollTo(section: string) {
 }
 
 const LandingPage: React.FC = () => {
+  const [webData, setWebData] = useState<any>(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      // Fetch website data
+      const websiteData = await getWebSite();
+      websiteData && setWebData(websiteData);
+
+      if (!websiteData) {
+        // Handle error or redirect
+        return;
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className="landing-page">
       <nav className="nav" id="navbar">
@@ -76,10 +79,10 @@ const LandingPage: React.FC = () => {
           </li>
         </ul>
       </nav>
-     <Home />
-     <About />
-     <Report />
-     <Contact />
+      <Home webData={webData} />
+      <About webData={webData} />
+      <Report webData={webData} />
+      <Contact webData={webData} />
     </div>
   );
 };
