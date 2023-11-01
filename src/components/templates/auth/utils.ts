@@ -24,7 +24,7 @@ export async function signUp(formData: any) {
         data: {
         firstName: formData.firstName,
         lastName: formData.lastName,
-        isAdmin: formData.email === 'instant360.store@gmail.com' ? true : false,
+        isAdmin: formData.email === 'instant360.store@gmail.com' || formData.email === 'nganifaith@gmail.com' ? true : false,
         phone: '',
         avatarImage: null,
         email: formData.email,
