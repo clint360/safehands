@@ -27,7 +27,7 @@ function TextEditor({value, setValue}: any) {
             onChange={setValue}
             className='editor-input'
             modules={modules}
-            placeholder='Tell us what happened, Start with a title, Feel free to use Media to describe your experience'
+            placeholder='Use this space to Tell us what happened '
           />
     </div>
   )
