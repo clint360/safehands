@@ -3,7 +3,17 @@ import React from "react";
 import "./Messages.scss";
 import Contacts from "./Contacts";
 import MessageBoard from "./MessageBoard";
-function Messages() {
+import { User } from "@supabase/auth-helpers-nextjs";
+import { useParams } from "next/navigation";
+
+interface MessagesProps {
+  user: User
+}
+
+function Messages({user}: MessagesProps) {
+  const params = useParams();
+  const messageId = params && params.id;
+
   return (
     <div
       className="messageswindow"
@@ -15,10 +25,10 @@ function Messages() {
         }px`,
       }}
     >
-      <div className="contactsDiv">
-        <Contacts />
+      <div className={`${messageId ? 'contactsDivClientDiv' : 'contactsDiv'} `}>
+        <Contacts user={user} />
       </div>
-      <div className="messageboardDiv">
+      <div className={`${messageId ? 'messageboardClientDiv' : 'messageboardDiv'} `}>
         <MessageBoard />
       </div>
     </div>

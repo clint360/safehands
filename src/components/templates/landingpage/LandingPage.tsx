@@ -35,7 +35,7 @@ const LandingPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="landing-page">
+    <div className="landingpage">
       <nav className="nav" id="navbar">
         <div className="logodiv">
           <Logo />

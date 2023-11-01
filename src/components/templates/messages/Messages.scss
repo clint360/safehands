@@ -1,5 +1,6 @@
 .messageswindow {
     display: flex;
+  }
  
     .contactsDiv {
        flex-basis: 40%;
@@ -20,7 +21,13 @@
             display: none;
         }
     }
-}
+
+  
+  .contactsDivClientDiv {
+    @media screen and (max-width: 736px) {
+      display: none;
+  }
+  }
 
 
 

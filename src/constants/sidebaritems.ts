@@ -21,12 +21,12 @@ export const items: SideBarItemInterface[] = [
     link: "/app/reports",
     adminItem: false
   },
-  {
-    title: "Messages",
-    icon: "mail",
-    link: "/app/messages",
-    adminItem: false
-  },
+  // {
+  //   title: "Messages",
+  //   icon: "mail",
+  //   link: "/app/messages",
+  //   adminItem: false
+  // },
   {
     title: "Website",
     icon: "domain_add",
