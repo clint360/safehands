@@ -1,4 +1,5 @@
 "use client"
+import TextEditor from '@/components/molecules/TextEditor'
 import { User } from '@supabase/auth-helpers-nextjs'
 import { redirect } from 'next/navigation'
 import React, { useEffect } from 'react'
@@ -14,7 +15,10 @@ function Website({user}: WebsiteProps) {
   },[])
 
   return (
-    <div>Website</div>
+    <div>
+      <h2>Hero</h2>
+      <TextEditor />
+    </div>
   )
 }
 

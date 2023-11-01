@@ -16,7 +16,7 @@ import { newReportNotification } from "@/services/notifications";
 export const fingerprint = `${navigator.userAgent.toString()}-${navigator.platform.toString()}`;
 
 interface ReportingFormProps {
-  user: User
+  user?: User
 }
 
 // Define Yup validation schema
