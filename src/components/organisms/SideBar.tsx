@@ -3,13 +3,18 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./SideBar.module.scss";
 import { SideBarItemInterface, items } from "@/constants/sidebaritems";
+import { User } from "@supabase/auth-helpers-nextjs";
+
+interface SideBarProps {
+  user: User
+}
 
 function SideBarItem({ title, icon, link }: SideBarItemInterface) {
   const router = useRouter();
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    setActive(!!(window.location.href.includes(link)));
+    setActive(!!window.location.href.includes(link));
   }, [window.location.href]);
 
   function action() {
@@ -30,14 +35,33 @@ function SideBarItem({ title, icon, link }: SideBarItemInterface) {
   );
 }
 
-function SideBar({user}: any) {
+function SideBar({ user }: SideBarProps) {
+  const userData = user.user_metadata
+
   return (
     <div className={styles.sidebarmain}>
-      {items.map((item, index) => {
+      {userData.isAdmin ? items.map((item, index) => {
         return (
-          <SideBarItem title={item.title} icon={item.icon} link={item.link} />
+          <SideBarItem
+            title={item.title}
+            icon={item.icon}
+            link={item.link}
+            adminItem={item.adminItem}
+          />
         );
-      })}
+      }) : 
+      items.filter((item)=>!item.adminItem).map((item, index) => {
+        return (
+          <SideBarItem
+            title={item.title}
+            icon={item.icon}
+            link={item.link}
+            adminItem={item.adminItem}
+          />
+        );
+      })
+    
+    }
     </div>
   );
 }

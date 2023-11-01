@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import {
   BarChart,
@@ -15,6 +15,12 @@ import {
 import "./Dashboard.scss";
 import Text from "@/components/atoms/Text";
 import CountUp from "react-countup";
+import { User } from "@supabase/auth-helpers-nextjs";
+import { redirect } from "next/navigation";
+
+interface DashboardProps {
+  user: User
+}
 
 const Grid = styled.div`
   margin-left: 1rem;
@@ -57,12 +63,19 @@ const StatCard = styled.div<{
   }
 `;
 
-const Dashboard: React.FC = () => {
-  // Sample data for analytics
-  const reportsReceived = 156;
-  const reportsReviewed = 78;
-  const reportsPending = 78;
-  const reporters = 20;
+function Dashboard({user}:DashboardProps){
+  const userData = user.user_metadata
+
+  useEffect(()=>{
+  if(!userData.isAdmin) redirect('/app/reports')
+  },[])
+
+    // Sample data for analytics
+    const reportsReceived = 156;
+    const reportsReviewed = 78;
+    const reportsPending = 78;
+    const reporters = 20;
+  
 
   // Sample data for bar chart
   const barChartData = [
