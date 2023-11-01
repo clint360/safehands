@@ -18,6 +18,8 @@ const bodyStyle = {
   background: "white",
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function RootLayout({
   children,
 }: {
