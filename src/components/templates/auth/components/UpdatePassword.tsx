@@ -33,7 +33,8 @@ const UpdatePassword = () => {
   return (
     <div className={styles.authPage}>
       <div className={styles.authBox}>
-      <h2 className="w-full text-center">Update Password</h2>
+      <div className={styles.resetpasswordbox}>
+      <h2 >Update Password</h2>
       <Formik
         initialValues={{
           password: '',
@@ -42,7 +43,7 @@ const UpdatePassword = () => {
         onSubmit={updatePassword}
       >
         {({ errors, touched }) => (
-          <Form className="column w-full">
+          <Form className={styles.resetpassworddiv}>
             <label htmlFor="email">New Password</label>
             <Field
               className={cn('input', errors.password && touched.password && 'bg-red-50')}
@@ -54,12 +55,13 @@ const UpdatePassword = () => {
               <div className="text-red-600">{errors.password}</div>
             ) : null}
             <button className="button-inverse w-full" type="submit">
-              Update Password
+              Update
             </button>
           </Form>
         )}
       </Formik>
       {errorMsg && <div className="text-red-600">{errorMsg}</div>}
+    </div>
     </div>
     </div>
   );

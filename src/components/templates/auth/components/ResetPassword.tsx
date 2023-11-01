@@ -32,7 +32,8 @@ const ResetPassword = () => {
   return (
     <div className={styles.authPage}>
       <div className={styles.authBox}>
-      <h2 className="w-full text-center">Forgot Password</h2>
+      <div className={styles.resetpasswordbox}>
+      <h2>Forgot Password</h2>
       <Formik
         initialValues={{
           email: '',
@@ -41,8 +42,9 @@ const ResetPassword = () => {
         onSubmit={resetPassword}
       >
         {({ errors, touched }) => (
-          <Form className="column w-full">
+          <Form className={styles.resetpassworddiv}>
             <label htmlFor="email">Email</label>
+            <div>
             <Field
               className={cn('input', errors.email && 'bg-red-50')}
               id="email"
@@ -53,17 +55,19 @@ const ResetPassword = () => {
             {errors.email && touched.email ? (
               <div className="text-red-600">{errors.email}</div>
             ) : null}
+            </div>
             <button className="button-inverse w-full" type="submit">
               Send Instructions
             </button>
           </Form>
         )}
       </Formik>
-      {errorMsg && <div className="text-center text-red-600">{errorMsg}</div>}
-      {successMsg && <div className="text-center text-black">{successMsg}</div>}
-      <Link href="/auth/signin" className="link">
+      {errorMsg && <div style={{textAlign: "center", color: "red"}}>{errorMsg}</div>}
+      {successMsg && <div style={{textAlign: "center", color: "green"}}>{successMsg}</div>}
+      <Link href="/auth/login" className={styles.link}>
         Remember your password? Sign In.
       </Link>
+      </div>
     </div>
     </div>
   );

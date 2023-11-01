@@ -119,3 +119,35 @@
   flex-grow: inherit;
   padding: 10px 0;
  }
+
+ .resetpasswordbox {
+  padding: 10px;
+
+  h2 {
+    text-align: center;
+    width: 100%;
+  }
+ }
+
+ .resetpassworddiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 40px 0;
+   
+  input {
+    padding: 10px 10px;
+  }
+
+  button {
+    padding: 10px 10px;
+    cursor: pointer;
+  }
+
+ }
+
+ .link {
+  color: blue;
+  width: 100%;
+  text-align: center;
+ }
